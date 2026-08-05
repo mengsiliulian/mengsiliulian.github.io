@@ -1,0 +1,187 @@
+#-----------------------------------------------------------
+# Hexo Theme Fluid 精简配置（AI 新闻周报）
+# 化繁为简：干净排版 + 首页大图 + 置顶推荐 + 手机适配
+#-----------------------------------------------------------
+
+# 浏览器标签图标
+favicon: /img/fluid.png
+apple_touch_icon: /img/fluid.png
+
+# 标签页标题分隔符：文章名 - 站点名
+tab_title_separator: " - "
+
+# 强推 HTTPS
+force_https: true
+
+#-----------------------------------------------------------
+# 顶栏
+#-----------------------------------------------------------
+navbar:
+  # 左侧标题，为空则用 hexo config 的 title
+  blog_title: "AI 新闻周报"
+  menu:
+    - { key: "home", link: "/", icon: "iconfont icon-home-fill" }
+    - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
+    - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
+    - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
+
+#-----------------------------------------------------------
+# 搜索
+#-----------------------------------------------------------
+search:
+  enable: true
+  path: /local-search.xml
+  generate_path: /local-search.xml
+  field: post
+  content: true
+
+#-----------------------------------------------------------
+# 首屏大图
+#-----------------------------------------------------------
+banner:
+  random_img: false
+  parallax: true
+  width_height_ratio: 1.0
+
+scroll_down_arrow:
+  enable: true
+
+scroll_top_arrow:
+  enable: true
+
+#-----------------------------------------------------------
+# 页脚
+#-----------------------------------------------------------
+footer:
+  content: '
+    <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+  '
+  statistics:
+    enable: false
+  beian:
+    enable: false
+
+#-----------------------------------------------------------
+# 首页
+#-----------------------------------------------------------
+index:
+  # 首页 Banner（克制柔和）
+  banner_img: /img/banner-default.jpg
+  banner_img_height: 70
+  banner_mask_alpha: 0.25
+
+  # 副标语
+  slogan:
+    enable: true
+    text: "每周精选 · 人工智能重要动态与深度解读"
+
+  # 自动截取摘要
+  auto_excerpt:
+    enable: true
+
+  # 打开文章方式：本页打开
+  post_url_target: _self
+
+  # 文章信息显示
+  post_meta:
+    date: true
+    category: true
+    tag: true
+
+  # 置顶文章图标（用于“推荐”）
+  post_sticky:
+    enable: true
+    icon: "iconfont icon-top"
+
+#-----------------------------------------------------------
+# 文章页
+#-----------------------------------------------------------
+post:
+  # 文章页顶部图
+  banner_img: /img/post-default.jpg
+  banner_img_height: 40
+  banner_mask_alpha: 0.25
+
+  # 默认文章封面（当未设置 index_img 时）
+  default_index_img:
+
+  # 标题下方元信息
+  meta:
+    author:
+      enable: false
+    date:
+      enable: true
+      format: "LL a"
+    wordcount:
+      enable: true
+    min2read:
+      enable: true
+      awl: 2
+      wpm: 60
+    views:
+      enable: false
+
+  updated:
+    enable: false
+
+  # 文章目录 TOC
+  toc:
+    enable: true
+    number: true
+    expand: false
+    scrollspy: true
+
+  # 上一篇 / 下一篇
+  prev_next:
+    enable: true
+
+  # 文章底部标签
+  tag_meta: true
+
+  # 相关文章
+  related_posts:
+    enable: true
+    limit: 4
+    date_type: created
+    cover: true
+
+  # 版权信息
+  copyright:
+    enable: true
+    creation: false
+    license: "CC BY-NC-SA 4.0"
+    link: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
+
+#-----------------------------------------------------------
+# 侧边栏
+#-----------------------------------------------------------
+sidebar:
+  # 是否显示头像
+  avatar: true
+  # 是否显示社交媒体
+  social: true
+
+#-----------------------------------------------------------
+# 评论（giscus，待配置 —— 待办）
+# 操作方法见回复说明：1)开 Discussions  2)安装 giscus App  3)填下面四个值
+#-----------------------------------------------------------
+comments:
+  enable: true
+  use: giscus
+  # 打开文章页时评论和目录同时显示，移动端降级到标签页
+  pangu: true
+
+giscus:
+  repo: "mengsiliulian/mengsiliulian.github.io"
+  repo-id: "R_kgDOTu8OEg"
+  category: "Announcements"
+  category-id: ""
+  theme-light: light
+  theme-dark: dark
+  mapping: pathname
+  reactions-enabled: 1
+  emit-metadata: 0
+  input-position: top
+  lang: zh-CN
