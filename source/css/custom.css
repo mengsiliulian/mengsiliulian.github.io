@@ -81,6 +81,13 @@ header .inner {
   padding-top: 4.5rem !important; /* 与导航条同高，标题下移到导航条下方 */
 }
 
+/* Banner 高度自适应：确保标题+日期+字数都在显示范围内，不被裁切
+   （文章详情页 banner 较矮，min-height 让其容纳全部元信息；
+     首页 banner 本身较高不受影响） */
+#banner {
+  min-height: 16rem !important;
+}
+
 /* 正文面板：滚动到顶时保证标题落在固定导航条下方，不被遮住 */
 #board-ctn,
 #board {
