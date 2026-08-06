@@ -24,6 +24,11 @@ custom_js:
 # 静态资源前缀覆盖：busuanzi 脚本改自托管（原 CDN 国内不稳定 + 防投毒）
 static_prefix:
   busuanzi: /js
+  # 全部第三方库改自托管（消除 baomitu CDN 依赖，加速加载）
+  jquery: /lib
+  bootstrap: /lib
+  typed: /lib
+  nprogress: /lib
 
 #-----------------------------------------------------------
 # 顶栏
