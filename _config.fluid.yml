@@ -4,8 +4,8 @@
 #-----------------------------------------------------------
 
 # 浏览器标签图标
-favicon: /img/fluid.png
-apple_touch_icon: /img/fluid.png
+favicon: /img/favicon.png
+apple_touch_icon: /img/favicon.png
 
 # 标签页标题分隔符：文章名 - 站点名
 tab_title_separator: " - "
