@@ -103,3 +103,18 @@ deploy:
   type: git
   repo: https://github.com/mengsiliulian/mengsiliulian.github.io.git
   branch: main
+
+# Sitemap
+sitemap:
+  path: sitemap.xml
+  rel: true
+
+
+# RSS Feed
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content: true
+
