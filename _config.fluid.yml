@@ -109,7 +109,7 @@ post:
   banner_mask_alpha: 0
 
   # 默认文章封面（首页文章列表缩略图）
-  default_index_img: /img/post-default.jpg
+  default_index_img:
 
   # 标题下方元信息
   meta:
