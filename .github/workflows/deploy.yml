@@ -6,13 +6,23 @@ on:
     branches:
       - source
 
-# 需要写 main 分支的权限
+# 需要写 main 分支 + 部署 Pages 的权限
 permissions:
   contents: write
+  pages: write
+  id-token: write
+
+# 同一时间只允许一个部署在跑，避免排队冲突
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       # 1. 拉取最新源码（source 分支）
       - name: 检出代码
@@ -34,8 +44,19 @@ jobs:
       - name: 构建网站
         run: npx hexo generate
 
-      # 5. 把生成好的 public/ 内容推送到 main 分支
-      - name: 部署到 main 分支
+      # 5. 上传构建产物作为 Pages artifact（Actions 部署方式）
+      - name: 上传 Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      # 6. 部署到 GitHub Pages（不再走 legacy 排队系统）
+      - name: 部署到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      # 7. 同时把构建产物推送到 main 分支（保留双分支备份习惯）
+      - name: 推送到 main 分支
         run: |
           cd public
           git init -b main
