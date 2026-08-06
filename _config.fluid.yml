@@ -16,9 +16,10 @@ force_https: true
 # 自定义 CSS（Banner 渐变背景等）
 custom_css: /css/custom.css
 
-# 自定义 JS（文章点赞，纯前端 localStorage）
+# 自定义 JS（文章点赞 + 返回上一步，纯前端）
 custom_js:
   - /js/like.js
+  - /js/back.js
 
 # 静态资源前缀覆盖：busuanzi 脚本改自托管（原 CDN 国内不稳定 + 防投毒）
 static_prefix:
