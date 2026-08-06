@@ -30,17 +30,23 @@
 }
 
 /* ============================================================
-   导航栏：常驻深色背景（不受滚动透明效果影响）
+   导航栏：常驻深色背景（不管是否滚动，始终不透明深色）
    ============================================================ */
-#navbar.navbar {
-  background-color: #2f4154 !important;  /* 深蓝灰 */
+/* 极高优先级强制：任何状态下导航栏都是深色背景 */
+html body nav#navbar.navbar,
+html body nav#navbar.navbar.scrolling-navbar,
+html body nav#navbar.navbar.top-nav-collapse,
+html body nav#navbar.navbar.navbar-col-show {
+  background-color: #2f4154 !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3) !important;
 }
 
-/* 覆盖 scrolling-navbar 的滚动透明效果 */
-#navbar.navbar.scrolling-navbar,
-#navbar.navbar.top-nav-collapse {
+/* 覆盖滚动动画对背景的影响 */
+.navbar.scrolling-navbar {
+  will-change: auto !important;
+}
+
+/* 最后兜底：直接覆盖主题的 .navbar transparent 基础背景 */
+.navbar {
   background-color: #2f4154 !important;
-  padding-top: 0.3rem !important;
-  padding-bottom: 0.3rem !important;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.3) !important;
 }
