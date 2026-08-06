@@ -1,4 +1,5 @@
 ---
+index_img: /img/cover-ai.svg
 title: OpenAI 官宣下一代模型 Astra、学术研究者计划启动：8 月初 AI 动态速览
 date: 2026-08-06 15:45:00
 updated: 2026-08-06 15:45:00
