@@ -79,7 +79,7 @@ index:
   # 副标语
   slogan:
     enable: true
-    text: "每周精选 · 人工智能重要动态与深度解读"
+    text: "每周精选 · 有趣、有用、有分量"
 
   # 自动截取摘要
   auto_excerpt:
