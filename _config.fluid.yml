@@ -16,6 +16,10 @@ force_https: true
 # 自定义 CSS（Banner 渐变背景等）
 custom_css: /css/custom.css
 
+# 自定义 JS（文章点赞，纯前端 localStorage）
+custom_js:
+  - /js/like.js
+
 #-----------------------------------------------------------
 # 顶栏
 #-----------------------------------------------------------
@@ -63,7 +67,8 @@ footer:
     <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
   '
   statistics:
-    enable: false
+    enable: true
+    source: "busuanzi"
   beian:
     enable: false
 
@@ -125,7 +130,8 @@ post:
       awl: 2
       wpm: 60
     views:
-      enable: false
+      enable: true
+      source: "busuanzi"
 
   updated:
     enable: false
