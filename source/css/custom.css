@@ -71,9 +71,19 @@ main {
   padding-top: 4.5rem; /* 72px，导航条高度 + 少量余量 */
 }
 
+/* 正文面板：滚动到顶时保证标题落在固定导航条下方，不被遮住 */
+#board-ctn,
+#board {
+  scroll-margin-top: 5rem;
+}
+
 /* 小屏（导航可能换行变高）时多留一点 */
 @media (max-width: 768px) {
   main {
     padding-top: 5.5rem;
+  }
+  #board-ctn,
+  #board {
+    scroll-margin-top: 6rem;
   }
 }
