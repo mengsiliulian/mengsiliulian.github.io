@@ -38,6 +38,10 @@
   }
 
   function inject() {
+    // 仅文章页显示（/YYYY/MM/DD/ 路径），首页/归档/标签/关于页不显示
+    if (!/^\/\d{4}\/\d{2}\/\d{2}\//.test(window.location.pathname)) {
+      return;
+    }
     var btn = build();
     document.body.appendChild(btn);
   }
