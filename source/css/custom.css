@@ -81,11 +81,17 @@ header .inner {
   padding-top: 4.5rem !important; /* 与导航条同高，标题下移到导航条下方 */
 }
 
-/* Banner 高度自适应：确保标题+日期+字数都在显示范围内，不被裁切
-   （文章详情页 banner 较矮，min-height 让其容纳全部元信息；
-     首页 banner 本身较高不受影响） */
+/* Banner 高度自适应：文章详情页 banner 由内容撑开（标题+日期+字数自然排列），
+   不被固定高度裁切，也不被上浮的正文卡片遮挡；
+   首页 banner（无 .mt-3 日期元信息）不受影响，保持原高度。
+   （:has() 由浏览器原生解析，不识别的老浏览器会忽略该规则，回退到上方 min-height） */
 #banner {
   min-height: 16rem !important;
+}
+body:has(#banner .mt-3) #banner,
+body:has(#banner .mt-3) .banner .full-bg-img,
+body:has(#banner .mt-3) .banner .mask {
+  height: auto !important;
 }
 
 /* 正文面板：滚动到顶时保证标题落在固定导航条下方，不被遮住 */
