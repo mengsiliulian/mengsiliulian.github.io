@@ -13,6 +13,9 @@ tab_title_separator: " - "
 # 强推 HTTPS
 force_https: true
 
+# 自定义 CSS（Banner 渐变背景等）
+custom_css: /css/custom.css
+
 #-----------------------------------------------------------
 # 顶栏
 #-----------------------------------------------------------
@@ -67,10 +70,10 @@ footer:
 # 首页
 #-----------------------------------------------------------
 index:
-  # 首页 Banner（克制柔和）
-  banner_img: /img/banner-default.jpg
-  banner_img_height: 70
-  banner_mask_alpha: 0.25
+  # 首页 Banner：去掉图片，改用 CSS 渐变背景（见 /css/custom.css）
+  banner_img:
+  banner_img_height: 60
+  banner_mask_alpha: 0
 
   # 副标语
   slogan:
@@ -99,13 +102,13 @@ index:
 # 文章页
 #-----------------------------------------------------------
 post:
-  # 文章页顶部图
-  banner_img: /img/post-default.jpg
-  banner_img_height: 40
-  banner_mask_alpha: 0.25
+  # 文章页顶部：同样去掉图片，用渐变背景
+  banner_img:
+  banner_img_height: 30
+  banner_mask_alpha: 0
 
-  # 默认文章封面（当未设置 index_img 时）
-  default_index_img:
+  # 默认文章封面（首页文章列表缩略图）
+  default_index_img: /img/post-default.jpg
 
   # 标题下方元信息
   meta:
@@ -177,7 +180,7 @@ giscus:
   repo: "mengsiliulian/mengsiliulian.github.io"
   repo-id: "R_kgDOTu8OEg"
   category: "Announcements"
-  category-id: ""
+  category-id: "DIC_kwDOTu8OEs4DCw0u"
   theme-light: light
   theme-dark: dark
   mapping: pathname

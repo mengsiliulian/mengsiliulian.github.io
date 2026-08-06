@@ -1,0 +1,27 @@
+/* ============================================================
+   AI 新闻周报 · Fluid 定制样式
+   首页/页面 Banner：去掉图片，改为柔和渐变背景
+   ============================================================ */
+
+/* 全局 Banner 渐变（首页 + 各页面顶部） */
+.banner {
+  background: linear-gradient(135deg, #eef4ff 0%, #e8ecf8 45%, #f0e6ff 100%) !important;
+}
+
+/* Banner 上的文字颜色（渐变背景下用深色更清晰） */
+.banner .slogan,
+.banner .banner-title,
+.banner .banner-subtitle,
+.banner .scroll-down {
+  color: #2c3e50 !important;
+}
+
+/* Banner 蒙版（渐变背景不需要深色蒙版） */
+.banner .mask {
+  background: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* 滚动提示箭头颜色 */
+.banner .scroll-down .iconfont {
+  color: #4a6fa5 !important;
+}
