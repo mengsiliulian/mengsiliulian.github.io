@@ -29,7 +29,17 @@
     var btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'like-btn' + (hasLiked() ? ' liked' : '');
-    btn.innerHTML = '<i class="iconfont icon-heart"></i> <span class="like-num">' + getLikes() + '</span>';
+
+    // 用 DOM API 构造，避免 innerHTML 注入风险
+    var icon = document.createElement('i');
+    icon.className = 'iconfont icon-heart';
+    icon.setAttribute('aria-hidden', 'true');
+    var num = document.createElement('span');
+    num.className = 'like-num';
+    num.textContent = getLikes();
+
+    btn.appendChild(icon);
+    btn.appendChild(num);
 
     var tip = document.createElement('div');
     tip.className = 'like-tip';
