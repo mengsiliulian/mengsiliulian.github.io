@@ -157,6 +157,11 @@ post:
     license: "CC BY-NC-SA 4.0"
     link: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
 
+  # 评论（giscus）—— 注意：必须放在 post 段内才能生效
+  comments:
+    enable: true
+    type: giscus
+
 #-----------------------------------------------------------
 # 侧边栏
 #-----------------------------------------------------------
@@ -167,15 +172,8 @@ sidebar:
   social: true
 
 #-----------------------------------------------------------
-# 评论（giscus，待配置 —— 待办）
-# 操作方法见回复说明：1)开 Discussions  2)安装 giscus App  3)填下面四个值
+# 评论插件配置（giscus 参数，顶层读取）
 #-----------------------------------------------------------
-comments:
-  enable: true
-  use: giscus
-  # 打开文章页时评论和目录同时显示，移动端降级到标签页
-  pangu: true
-
 giscus:
   repo: "mengsiliulian/mengsiliulian.github.io"
   repo-id: "R_kgDOTu8OEg"
