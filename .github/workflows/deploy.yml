@@ -1,0 +1,46 @@
+name: 自动部署博客
+
+# 触发条件：push 到 source 分支时自动运行
+on:
+  push:
+    branches:
+      - source
+
+# 需要写 main 分支的权限
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 拉取最新源码（source 分支）
+      - name: 检出代码
+        uses: actions/checkout@v4
+        with:
+          ref: source
+
+      # 2. 安装 Node.js
+      - name: 安装 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # 3. 安装依赖（Hexo 等）
+      - name: 安装依赖
+        run: npm ci
+
+      # 4. 生成静态网站（public/ 目录）
+      - name: 构建网站
+        run: npx hexo generate
+
+      # 5. 把生成好的 public/ 内容推送到 main 分支
+      - name: 部署到 main 分支
+        run: |
+          cd public
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Deploy: $(date +'%Y-%m-%d %H:%M:%S')"
+          git push --force https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/mengsiliulian/mengsiliulian.github.io.git main
