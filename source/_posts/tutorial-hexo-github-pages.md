@@ -1,6 +1,6 @@
 ---
 index_img: /img/cover-default.png
-title: 十分钟搭建自己的 AI 新闻周报博客：Hexo + GitHub Pages 零成本方案
+title: 十分钟搭建自己的 AI 新闻博客：Hexo + GitHub Pages 零成本方案
 date: 2026-08-07 12:30:00
 updated: 2026-08-07 12:30:00
 comments: true

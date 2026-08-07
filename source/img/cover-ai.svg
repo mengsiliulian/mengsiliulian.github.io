@@ -9,6 +9,6 @@
   <rect width="1200" height="630" fill="url(#bg)"/>
   <circle cx="1000" cy="120" r="200" fill="#ffffff" opacity="0.05"/>
   <circle cx="150" cy="550" r="260" fill="#ffffff" opacity="0.04"/>
-  <text x="80" y="300" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="60" font-weight="bold" fill="#7dd3fc">AI 新闻周报</text>
+  <text x="80" y="300" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="60" font-weight="bold" fill="#7dd3fc">AI 新闻</text>
   <text x="84" y="360" font-family="PingFang SC, Microsoft YaHei, sans-serif" font-size="26" fill="#e2e8f0">人工智能动态与深度解读</text>
 </svg>
