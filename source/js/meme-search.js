@@ -77,6 +77,53 @@
     return false;
   }
 
+  /* ---------- 匹配程度打分（得分越高越靠前；先比层级，再比同层得分）---------- */
+  // 返回 [layer, score]：layer 表示主命中优先级，score 为同层内的细分得分
+  function scoreEntry(m, kw) {
+    if (!kw) return [0, 0];
+    var nName = normalize(m.name);
+    var kwL = kw;
+    var layer = 0;
+    var score = 0;
+
+    // name 完全命中（最高优先级）
+    if (nName === kwL) { layer = 6; score = 100; }
+    // name 开头命中
+    else if (nName.indexOf(kwL) === 0) { layer = 5; score = 90; }
+
+    // aliases：完全/开头命中视为该别名即关键词本身（仅次于 name 命中）
+    var aliases = m.aliases || [];
+    var aliasExact = false, aliasPrefix = false;
+    for (var i = 0; i < aliases.length; i++) {
+      var na = normalize(aliases[i]);
+      if (na === kwL) aliasExact = true;
+      else if (na.indexOf(kwL) === 0) aliasPrefix = true;
+    }
+    if (aliasExact && layer === 0) { layer = 4; score = 85; }
+    else if (aliasPrefix && layer === 0) { layer = 3; score = 78; }
+
+    // name 包含（未完全/开头命中）
+    if (nName.indexOf(kwL) !== -1 && layer === 0) { layer = 2; score = 70; }
+
+    // 以下为低优先级辅助命中（仅在未命中 name/alias 时考虑）
+    if (layer === 0) {
+      // alias 包含
+      for (var j = 0; j < aliases.length; j++) {
+        if (normalize(aliases[j]).indexOf(kwL) !== -1) { layer = 1; score = 60; break; }
+      }
+      // tags 命中
+      var tags = m.tags || [];
+      for (var k = 0; k < tags.length; k++) {
+        if (normalize(tags[k]).indexOf(kwL) !== -1) { if (layer < 1) layer = 0; score += 50; break; }
+      }
+      if (normalize(m.definition).indexOf(kwL) !== -1) { layer = 0; score += 40; }
+      if (normalize(m.origin).indexOf(kwL) !== -1) { layer = 0; score += 30; }
+      if (normalize(m.usage).indexOf(kwL) !== -1) { layer = 0; score += 20; }
+    }
+
+    return [layer, score];
+  }
+
   function render() {
     if (!loaded) return;
     var kw = normalize(qEl.value);
@@ -87,12 +134,22 @@
       return true;
     });
 
-    // 排序：先按 era 倒序，再按 name
-    result.sort(function (a, b) {
-      var eb = (b.era || '').localeCompare(a.era || '');
-      if (eb !== 0) return eb;
-      return (a.name || '').localeCompare(b.name || '', 'zh');
-    });
+    // 排序：有关键词 -> 按匹配得分降序（先比 layer 再比 score）；无关键词 -> 按 era 倒序 + name
+    if (kw) {
+      result.sort(function (a, b) {
+        var sa = scoreEntry(a, kw);
+        var sb = scoreEntry(b, kw);
+        if (sa[0] !== sb[0]) return sb[0] - sa[0];
+        if (sa[1] !== sb[1]) return sb[1] - sa[1];
+        return (a.name || '').localeCompare(b.name || '', 'zh');
+      });
+    } else {
+      result.sort(function (a, b) {
+        var eb = (b.era || '').localeCompare(a.era || '');
+        if (eb !== 0) return eb;
+        return (a.name || '').localeCompare(b.name || '', 'zh');
+      });
+    }
 
     if (statsEl) statsEl.textContent = '共 ' + data.length + ' 个词条 · 当前匹配 ' + result.length + ' 个' + (kw ? '（关键词："' + qEl.value + '"）' : '');
 
