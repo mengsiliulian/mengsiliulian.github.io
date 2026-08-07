@@ -31,7 +31,8 @@ hexo.extend.filter.register('before_generate', function () {
   const posts = hexo.locals.get('posts');
   let count = 0;
   posts.forEach(function (post) {
-    const d = post.date ? post.date.format('YYYYMMDD') : '00000000';
+    // 用 +08:00 固定偏移取日期，避免 Action(UTC) 环境把凌晨文章日期算到前一天
+    const d = post.date ? post.date.clone().utcOffset(480).format('YYYYMMDD') : '00000000';
     const rank = String(categoryRank(post)).padStart(2, '0');
     post.sort_key = d + '-' + rank;
     count++;
