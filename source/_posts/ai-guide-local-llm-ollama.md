@@ -1,5 +1,4 @@
----
-index_img: /img/cover-default.png
+﻿---
 title: 本地跑大模型是什么体验？普通人也能玩的 Ollama 指南
 date: 2026-08-07 13:00:00
 updated: 2026-08-07 13:00:00

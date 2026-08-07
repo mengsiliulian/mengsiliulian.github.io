@@ -1,5 +1,4 @@
----
-index_img: /img/cover-default.png
+﻿---
 title: 零基础学 AI 大模型：一份写给普通人的 2026 学习路线
 date: 2026-08-07 14:00:00
 updated: 2026-08-07 14:00:00

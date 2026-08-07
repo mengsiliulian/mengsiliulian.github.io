@@ -1,4 +1,4 @@
-#-----------------------------------------------------------
+﻿#-----------------------------------------------------------
 # Hexo Theme Fluid 精简配置（AI 新闻周报）
 # 化繁为简：干净排版 + 首页大图 + 置顶推荐 + 手机适配
 #-----------------------------------------------------------
@@ -41,7 +41,7 @@ navbar:
     - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
     - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
-    - { key: "about", link: "/about/", icon: "iconfont icon-about" }
+    - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
 
 #-----------------------------------------------------------
 # 搜索
@@ -94,7 +94,7 @@ index:
   # 副标语
   slogan:
     enable: true
-    text: "AI 动态 · 二次元乐子 · 教程干货"
+    text: "AI 动态 · 二次元趣闻 · 教程干货"
 
   # 自动截取摘要
   auto_excerpt:

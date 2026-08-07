@@ -1,5 +1,4 @@
----
-index_img: /img/cover-default.png
+﻿---
 title: 2026 年 8 月免费 AI 工具盘点：对话、写作、画图、编程一网打尽
 date: 2026-08-07 13:30:00
 updated: 2026-08-07 13:30:00

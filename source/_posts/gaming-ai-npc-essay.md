@@ -1,5 +1,4 @@
----
-index_img: /img/cover-default.png
+﻿---
 title: 当 NPC 有了"脑子"：AI 正在怎么改变游戏
 date: 2026-08-07 14:30:00
 updated: 2026-08-07 14:30:00
