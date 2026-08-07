@@ -37,4 +37,7 @@ hexo.extend.filter.register('before_generate', function () {
     count++;
   });
   hexo.log.info('[sort-posts] injected sort_key to %d posts', count);
+  const sample = [];
+  posts.forEach(function (p) { sample.push(p.sort_key + '|' + (p.title || '').slice(0, 10)); });
+  hexo.log.info('[sort-posts] keys: %s', sample.join(' , '));
 });
