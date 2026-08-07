@@ -1,13 +1,9 @@
 /**
  * 首页文章排序插件
  * 规则：
- *  1. sticky 置顶优先（hexo-generator-index 默认处理：sticky 大的在前，稳定排序）
+ *  1. sticky 置顶优先（hexo-generator-index 默认处理：sticky 大的在前）
  *  2. 其余按日期倒序（时间新的在前）
  *  3. 同一天的文章按分类顺序聚合（分类按约定顺序）
- *
- * 原理：给每篇文章注入 sort_key = "YYYYMMDD-分类序号"，
- * 再把 _config.yml 的 index_generator.order_by 设为 "-sort_key"。
- * 生成器先按 sort_key 倒序（日期倒序+同日按分类），再稳定地按 sticky 倒序（置顶优先）。
  */
 'use strict';
 
@@ -33,11 +29,12 @@ function categoryRank(post) {
 
 hexo.extend.filter.register('before_generate', function () {
   const posts = hexo.locals.get('posts');
-  if (posts) {
-    posts.forEach(function (post) {
-      const d = post.date ? post.date.format('YYYYMMDD') : '00000000';
-      const rank = String(categoryRank(post)).padStart(2, '0');
-      post.sort_key = d + '-' + rank;
-    });
-  }
+  let count = 0;
+  posts.forEach(function (post) {
+    const d = post.date ? post.date.format('YYYYMMDD') : '00000000';
+    const rank = String(categoryRank(post)).padStart(2, '0');
+    post.sort_key = d + '-' + rank;
+    count++;
+  });
+  hexo.log.info('[sort-posts] injected sort_key to %d posts', count);
 });
