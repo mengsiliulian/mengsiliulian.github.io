@@ -94,7 +94,7 @@ index:
   # 副标语
   slogan:
     enable: true
-    text: "每周精选 · 有趣、有用、有分量"
+    text: "AI 动态 · 二次元乐子 · 教程干货"
 
   # 自动截取摘要
   auto_excerpt:
