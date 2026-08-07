@@ -136,7 +136,7 @@ post:
     wordcount:
       enable: true
     min2read:
-      enable: true
+      enable: false
       awl: 2
       wpm: 60
     views:
