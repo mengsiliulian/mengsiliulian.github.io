@@ -1,5 +1,5 @@
 ---
-title: 梗详解
+title: 网络百科
 permalink: /meme/
 comments: false
 toc: false
@@ -10,8 +10,8 @@ toc: false
 <div class="meme-wrap">
 
   <div class="meme-head">
-    <h2>🧩 梗详解 · 全量词典</h2>
-    <p class="meme-desc">从上世纪至今的二次元梗 + 网络梗词条库。输入关键词即可模糊搜索（含别名/标签匹配），如搜「三倍速」可命中「红有三」。</p>
+    <h2>🈚 网络百科 · 全量词条库</h2>
+    <p class="meme-desc">从上世纪至今的二次元 + 网络 + 游戏词条库。输入关键词即可模糊搜索（含别名/标签匹配），如搜「三倍速」可命中「红有三」。</p>
   </div>
 
   <div class="meme-search-box">
