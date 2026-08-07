@@ -144,3 +144,8 @@
   .meme-card { padding: 12px 14px; }
   .meme-card-title { font-size: 16px; }
 }
+
+.meme-src { font-size: 0.8em; color: #7f8c9d; margin-top: 6px; }
+.meme-src a { color: #7aa2e3; text-decoration: none; border-bottom: 1px dashed #7aa2e3; }
+.meme-src a:hover { color: #2f6fd0; }
+

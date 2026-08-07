@@ -187,6 +187,17 @@
 
     var originHtml = m.origin ? '<p class="meme-f"><b>📜 出处：</b>' + highlight(m.origin, kw) + '</p>' : '';
     var usageHtml = m.usage ? '<p class="meme-f"><b>💬 用法：</b>' + highlight(m.usage, kw) + '</p>' : '';
+
+    var sourceHtml = '';
+    if (m.source) {
+      var src = esc(m.source);
+      if (src.indexOf('moegirl') !== -1) {
+        var link = 'https://zh.moegirl.org.cn/' + encodeURIComponent(m.name.replace(/\s/g, '_'));
+        sourceHtml = '<p class="meme-f meme-src"><b>🔗 参考：</b><a href="' + link + '" target="_blank" rel="noopener">' + src + '</a></p>';
+      } else {
+        sourceHtml = '<p class="meme-f meme-src"><b>🔗 参考：</b>' + src + '</p>';
+      }
+    }
     var relatedHtml = (m.related && m.related.length) ? '<p class="meme-f meme-related"><b>🔗 关联：</b>' + m.related.map(function (r) { return '<span class="meme-rel">' + esc(r) + '</span>'; }).join(' ') + '</p>' : '';
 
     return '<div class="meme-card">' +
@@ -195,6 +206,7 @@
       aliasesHtml +
       originHtml +
       usageHtml +
+      sourceHtml +
       relatedHtml +
       '</div>';
   }
