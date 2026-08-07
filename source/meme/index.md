@@ -10,8 +10,9 @@ toc: false
 <div class="meme-wrap">
 
   <div class="meme-head">
-    <h2>🈚 网络百科 · 全量词条库</h2>
+    <h2>🗂️ 网络百科 · 全量词条库</h2>
     <p class="meme-desc">从上世纪至今的二次元 + 网络 + 游戏词条库。输入关键词即可模糊搜索（含别名/标签匹配），如搜「三倍速」可命中「红有三」。</p>
+    <p class="meme-submit">💡 想收录新词条？<a href="https://github.com/mengsiliulian/mengsiliulian.github.io/issues/new?template=submit-meme.yml" target="_blank" rel="noopener">点这里提交投稿</a>，站长审核通过后会收录进词条库。</p>
   </div>
 
   <div class="meme-search-box">

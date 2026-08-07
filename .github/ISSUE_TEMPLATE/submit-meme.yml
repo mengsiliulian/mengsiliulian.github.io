@@ -1,0 +1,73 @@
+name: 词条投稿
+description: 向「网络百科」提交一个新词条，站长审核通过后会收录进词条库
+title: "[词条] 词条名"
+labels: ["词条投稿"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢投稿！请填写下方信息，站长审核通过后会收录进「网络百科」词条库。
+
+  - type: input
+    id: name
+    attributes:
+      label: 词条名 *
+      description: 这个词条的正式名称
+      placeholder: 例：yyds
+    validations:
+      required: true
+
+  - type: input
+    id: aliases
+    attributes:
+      label: 别名
+      description: 其他叫法，多个用 / 分隔，没有可留空
+      placeholder: 例：永远的神 / YYDS
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: 分类 *
+      description: 属于哪一类
+      options:
+        - 网络
+        - 二次元
+        - 游戏
+    validations:
+      required: true
+
+  - type: input
+    id: era
+    attributes:
+      label: 大概流行年代
+      description: 如 2020 年 / 2018-2021 年，不确定可不填
+      placeholder: 例：2020 年
+
+  - type: textarea
+    id: definition
+    attributes:
+      label: 解释（让完全不懂的小白能看懂）*
+      description: 说明这个词条是什么意思、指什么
+      placeholder: 用简单的话讲清楚这个词条的含义……
+    validations:
+      required: true
+
+  - type: textarea
+    id: origin
+    attributes:
+      label: 出处 / 来历
+      description: 如果有，写这个梗是怎么来的、出自哪里
+      placeholder: 例：源自某动漫/事件/主播……
+
+  - type: textarea
+    id: usage
+    attributes:
+      label: 用法举例
+      description: 给 1-2 个例句，方便理解怎么用
+      placeholder: 例：这操作 yyds！
+
+  - type: textarea
+    id: extra
+    attributes:
+      label: 补充说明
+      description: 其他想补充的

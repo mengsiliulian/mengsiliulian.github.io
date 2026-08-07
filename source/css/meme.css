@@ -15,6 +15,9 @@
 .meme-head { margin-bottom: 18px; }
 .meme-head h2 { margin: 0 0 6px; font-size: 24px; color: #2c3e50; }
 .meme-desc { margin: 0; color: #5a6b7d; font-size: 14px; }
+.meme-submit { margin: 8px 0 0; color: #5a6b7d; font-size: 13px; }
+.meme-submit a { color: #007bff; font-weight: 500; text-decoration: none; border-bottom: 1px dashed #007bff; }
+.meme-submit a:hover { color: #0056b3; border-bottom-style: solid; }
 
 /* ---- 搜索框 ---- */
 .meme-search-box {
