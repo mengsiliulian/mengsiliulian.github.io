@@ -188,7 +188,9 @@
     var originHtml = m.origin ? '<p class="meme-f"><b>📜 出处：</b>' + highlight(m.origin, kw) + '</p>' : '';
     var usageHtml = m.usage ? '<p class="meme-f"><b>💬 用法：</b>' + highlight(m.usage, kw) + '</p>' : '';
 
-    var relatedHtml = (m.related && m.related.length) ? '<p class="meme-f meme-related"><b>🔗 关联：</b>' + m.related.map(function (r) { return '<span class="meme-rel">' + esc(r) + '</span>'; }).join(' ') + '</p>' : '';
+    // related 字段可能为数组或纯字符串；统一成数组处理，杜绝 .map 报错
+    var relatedArr = Array.isArray(m.related) ? m.related : (typeof m.related === 'string' && m.related ? [m.related] : []);
+    var relatedHtml = relatedArr.length ? '<p class="meme-f meme-related"><b>🔗 关联：</b>' + relatedArr.map(function (r) { return '<span class="meme-rel">' + esc(r) + '</span>'; }).join(' ') + '</p>' : '';
 
     return '<div class="meme-card">' +
       '<div class="meme-card-title">' + esc(m.name) + ' ' + typeBadge + eraBadge + '</div>' +
