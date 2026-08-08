@@ -1,0 +1,982 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="mengsiliulian">
+  <meta name="keywords" content="AI, 人工智能, 新闻周报, 机器学习, 大模型">
+  
+    <meta name="description" content="玩家看到的 AI 是”会打游戏的 NPC”，但游戏公司更在意的，是 AI 在开发流水线里干活的效率。这篇文章聊聊那些玩家看不见、但确实在改变游戏行业的 AI 应用。  为什么聊”幕后”过去几期我们聊过 AI Agent 打游戏（AlphaStar、SIMA），也聊过游戏里的智能 NPC。但对游戏公司来说，把 AI 用在开发环节，回报比”让 NPC 更聪明”直接得多——因为省下的都是真金白银。 U">
+<meta property="og:type" content="article">
+<meta property="og:title" content="看不见的&quot;游戏开发者&quot;：AI 正在游戏幕后做哪些脏活累活">
+<meta property="og:url" content="https://mengsiliulian.github.io/2026/08/07/gaming-ai-production-essay/index.html">
+<meta property="og:site_name" content="AI 新闻周报">
+<meta property="og:description" content="玩家看到的 AI 是”会打游戏的 NPC”，但游戏公司更在意的，是 AI 在开发流水线里干活的效率。这篇文章聊聊那些玩家看不见、但确实在改变游戏行业的 AI 应用。  为什么聊”幕后”过去几期我们聊过 AI Agent 打游戏（AlphaStar、SIMA），也聊过游戏里的智能 NPC。但对游戏公司来说，把 AI 用在开发环节，回报比”让 NPC 更聪明”直接得多——因为省下的都是真金白银。 U">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-07T06:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-07T06:00:00.000Z">
+<meta property="article:author" content="mengsiliulian">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="测试">
+<meta property="article:tag" content="游戏">
+<meta property="article:tag" content="游戏开发">
+<meta property="article:tag" content="美术">
+<meta property="article:tag" content="音频">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>看不见的&#34;游戏开发者&#34;：AI 正在游戏幕后做哪些脏活累活 - AI 新闻周报</title>
+
+  <link  rel="stylesheet" href="/lib/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"mengsiliulian.github.io","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0,"number":true,"expand":false,"scrollspy":true},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="AI 新闻周报" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 30vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>AI 新闻周报</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/meme/" target="_self">
+                <i class="iconfont icon-book"></i>
+                <span>网络百科</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/meme/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-book"></i>
+                  <span>网络百科</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/null') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="看不见的&#34;游戏开发者&#34;：AI 正在游戏幕后做哪些脏活累活"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-08-07 14:00" pubdate>
+          2026年8月7日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">看不见的&#34;游戏开发者&#34;：AI 正在游戏幕后做哪些脏活累活</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>玩家看到的 AI 是”会打游戏的 NPC”，但游戏公司更在意的，是 AI 在<strong>开发流水线</strong>里干活的效率。这篇文章聊聊那些玩家看不见、但确实在改变游戏行业的 AI 应用。</p>
+</blockquote>
+<h2 id="为什么聊”幕后”"><a href="#为什么聊”幕后”" class="headerlink" title="为什么聊”幕后”"></a>为什么聊”幕后”</h2><p>过去几期我们聊过 AI Agent 打游戏（AlphaStar、SIMA），也聊过游戏里的智能 NPC。但对游戏公司来说，<strong>把 AI 用在开发环节，回报比”让 NPC 更聪明”直接得多</strong>——因为省下的都是真金白银。</p>
+<p>Unity 和 Epic 都在官方开发者平台提供了 AI 工具链，NVIDIA 的 ACE 技术更是把 AI 直接塞进了游戏引擎。这些不是概念演示，而是已经进了工作流的东西。</p>
+<h2 id="一、美术：从”草图”到”可用素材”的加速器"><a href="#一、美术：从”草图”到”可用素材”的加速器" class="headerlink" title="一、美术：从”草图”到”可用素材”的加速器"></a>一、美术：从”草图”到”可用素材”的加速器</h2><p>游戏美术是成本大头，一张高质量概念图外包可能要几千美元，一个 3A 项目的原画需求数以千计。</p>
+<p>AI 在这里干三件事：</p>
+<ol>
+<li><strong>概念探索</strong>：用 AI 生成大量风格草图，美术师挑方向再精修，把”找感觉”的时间从几天压缩到几小时</li>
+<li><strong>贴图与材质</strong>：AI 生成法线贴图、粗糙度贴图等 PBR 材质，Unity 官方文档里就有 AI 辅助材质生成的方案</li>
+<li><strong>动捕与动画</strong>：AI 从视频里提取动作数据（不需要昂贵的动捕服），或者自动生成角色 idle 动画的中间帧</li>
+</ol>
+<p>值得一提的是 <strong>NVIDIA ACE</strong>：它不止做 NPC 对话，还包含数字人动画生成，让角色的口型、表情、肢体动作自动同步语音。官方技术文档明确写了这套流程。</p>
+<h2 id="二、音频：自动对白与程序化音效"><a href="#二、音频：自动对白与程序化音效" class="headerlink" title="二、音频：自动对白与程序化音效"></a>二、音频：自动对白与程序化音效</h2><p>配音是另一个烧钱环节：一小时的游戏对白，可能需要几十位声优、几周的录音棚时间。</p>
+<p>AI 的介入方式：</p>
+<ul>
+<li><strong>语音合成</strong>：用 AI 声线批量生成 NPC 对白初稿，人类声优只录关键角色，或者对 AI 初稿做”配音导演式”调整</li>
+<li><strong>程序化音效</strong>：脚步声、刀剑碰撞、环境音这类海量小音效，AI 可以按规则批量生成，音效师只处理特殊事件</li>
+<li><strong>语音本地化</strong>：多语言配音成本极高，AI 语音克隆 + 翻译可以把本地化成本降一个量级（这也是很多独立游戏能出多语言配音的原因）</li>
+</ul>
+<p>Epic 在 Unreal 的官方文档里提供了 MetaSounds 程序化音频框架，配合 AI 生成音效，很多独立开发者已经这么干了。</p>
+<h2 id="三、测试：让-AI-替你玩游戏找-Bug"><a href="#三、测试：让-AI-替你玩游戏找-Bug" class="headerlink" title="三、测试：让 AI 替你玩游戏找 Bug"></a>三、测试：让 AI 替你玩游戏找 Bug</h2><p>游戏测试是”人海战术”：几百个测试员反复玩同一关，找崩溃、卡死、穿模。</p>
+<p>AI 测试的游戏方式：</p>
+<ul>
+<li><strong>自动探索</strong>：AI 控制的机器人玩家随机&#x2F;智能地探索地图，自动上报崩溃和异常，配合 CI 每天跑几百小时”游戏时长”</li>
+<li><strong>平衡性测试</strong>：AI 用不同策略反复对战，收集数值曲线，帮设计师发现”某个角色强得离谱”</li>
+<li><strong>回归测试</strong>：每次版本更新后，AI 自动重跑关键路径，确保没改坏旧功能</li>
+</ul>
+<p>Unity 和 Epic 的开发者生态里都有 AI 自动化测试的官方工具链，大型工作室（育碧、EA 等）在开发者大会上也公开过自研的 AI 测试系统。</p>
+<h2 id="四、反作弊：对抗的军备竞赛"><a href="#四、反作弊：对抗的军备竞赛" class="headerlink" title="四、反作弊：对抗的军备竞赛"></a>四、反作弊：对抗的军备竞赛</h2><p>在线游戏最头疼的是外挂。传统反作弊靠特征库匹配，外挂作者换个壳就绕过去了。</p>
+<p>AI 反作弊的思路是<strong>行为分析</strong>：不检测外挂程序本身，而是检测”玩家的操作是否像人”——鼠标轨迹、反应时间分布、操作节奏，这些统计特征 AI 学一遍之后，机器操作和人类操作几乎无法伪装。</p>
+<p>各家游戏公司（包括拳头、暴雪、V 社）都在用机器学习做反作弊，这是公开的技术方向：用海量真实玩家数据训练模型，实时判断”这个玩家是不是开了东西”。</p>
+<h2 id="五、本地化：翻译之外的文化适配"><a href="#五、本地化：翻译之外的文化适配" class="headerlink" title="五、本地化：翻译之外的文化适配"></a>五、本地化：翻译之外的文化适配</h2><p>游戏出海要翻译几十种语言，还要处理文化禁忌（某些手势在某些国家不能出现、某些文字要打码）。</p>
+<p>AI 本地化流水线：</p>
+<ol>
+<li><strong>机翻初稿</strong>：大模型翻译游戏文案（对白、道具名、技能说明）</li>
+<li><strong>术语表约束</strong>：把游戏专有名词（角色名、地名、技能名）锁进术语表，保证全游戏统一</li>
+<li><strong>文化检查</strong>：AI 标记可能冒犯特定文化的内容，交给人工审核</li>
+<li><strong>人工润色</strong>：专业译员只改机翻的”味儿”，而不是从零翻译</li>
+</ol>
+<p>这已经是游戏公司标准流程，很多外包本地化公司就是靠”AI 初稿 + 人工润色”接单的。</p>
+<h2 id="为什么值得关注"><a href="#为什么值得关注" class="headerlink" title="为什么值得关注"></a>为什么值得关注</h2><p>对玩家来说，这些幕后 AI 的直接感受是：<strong>独立游戏能做出以前只有大厂才做得起的品质</strong>（多语言配音、海量美术素材、专业音效），<strong>在线游戏的外挂少了</strong>，<strong>更新的 Bug 少了</strong>。</p>
+<p>对行业来说，AI 没有”取代游戏开发者”，而是把开发者从重复劳动里解放出来——美术师不用画一百张草稿找方向，测试员不用每天重复玩同一关。省下来的时间和钱，最终会变成更多好游戏。</p>
+<blockquote>
+<p>本文为科普向杂谈，各厂商 AI 工具的具体能力与支持情况以官方最新文档为准。</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%B8%B8%E6%88%8F%E6%9D%82%E8%B0%88/" class="category-chain-item">游戏杂谈</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AI/" class="print-no-link">#AI</a>
+      
+        <a href="/tags/%E6%B8%B8%E6%88%8F/" class="print-no-link">#游戏</a>
+      
+        <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" class="print-no-link">#游戏开发</a>
+      
+        <a href="/tags/%E7%BE%8E%E6%9C%AF/" class="print-no-link">#美术</a>
+      
+        <a href="/tags/%E9%9F%B3%E9%A2%91/" class="print-no-link">#音频</a>
+      
+        <a href="/tags/%E6%B5%8B%E8%AF%95/" class="print-no-link">#测试</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>看不见的&#34;游戏开发者&#34;：AI 正在游戏幕后做哪些脏活累活</div>
+      <div>https://mengsiliulian.github.io/2026/08/07/gaming-ai-production-essay/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>mengsiliulian</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年8月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              CC BY-NC-SA 4.0
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/08/07/ai-learning-roadmap-2026/" title="零基础学 AI 大模型：一份写给普通人的 2026 学习路线">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">零基础学 AI 大模型：一份写给普通人的 2026 学习路线</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/08/07/ai-science-hallucination-2026/" title="AI 为什么会&#34;一本正经地胡说八道&#34;？聊聊大模型的幻觉（Hallucination）">
+                        <span class="hidden-mobile">AI 为什么会&#34;一本正经地胡说八道&#34;？聊聊大模型的幻觉（Hallucination）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"mengsiliulian/mengsiliulian.github.io","repo-id":"R_kgDOTu8OEg","category":"Announcements","category-id":"DIC_kwDOTu8OEs4DCw0u","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="/lib/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="/lib/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="/lib/jquery.min.js" ></script>
+<script  src="/lib/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/like.js"></script>
+<script src="/js/back.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
