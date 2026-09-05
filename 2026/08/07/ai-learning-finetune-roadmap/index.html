@@ -1,0 +1,1041 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="mengsiliulian">
+  <meta name="keywords" content="AI, 人工智能, 新闻周报, 机器学习, 大模型">
+  
+    <meta name="description" content="上一篇路线讲的是”怎么用好别人的大模型”（提示词工程），这篇进阶路线讲”怎么把大模型变成自己的”——本地部署、开源模型、微调训练。需要一定编程基础，但不需要是算法专家。  这条路适合谁 用过 ChatGPT&#x2F;DeepSeek，想摆脱 API 费用和隐私顾虑 想基于开源模型做自己的专属助手（客服、写作、知识库问答） 程序员，想理解大模型落地工程  前置要求：会 Python 基础（能跑脚">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从&quot;会用&quot;到&quot;会造&quot;：本地部署与微调大模型的进阶学习路线">
+<meta property="og:url" content="https://mengsiliulian.github.io/2026/08/07/ai-learning-finetune-roadmap/index.html">
+<meta property="og:site_name" content="AI 新闻周报">
+<meta property="og:description" content="上一篇路线讲的是”怎么用好别人的大模型”（提示词工程），这篇进阶路线讲”怎么把大模型变成自己的”——本地部署、开源模型、微调训练。需要一定编程基础，但不需要是算法专家。  这条路适合谁 用过 ChatGPT&#x2F;DeepSeek，想摆脱 API 费用和隐私顾虑 想基于开源模型做自己的专属助手（客服、写作、知识库问答） 程序员，想理解大模型落地工程  前置要求：会 Python 基础（能跑脚">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-07T08:00:00.000Z">
+<meta property="article:modified_time" content="2026-08-07T08:00:00.000Z">
+<meta property="article:author" content="mengsiliulian">
+<meta property="article:tag" content="大模型">
+<meta property="article:tag" content="学习路线">
+<meta property="article:tag" content="微调">
+<meta property="article:tag" content="本地部署">
+<meta property="article:tag" content="进阶">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>从&#34;会用&#34;到&#34;会造&#34;：本地部署与微调大模型的进阶学习路线 - AI 新闻周报</title>
+
+  <link  rel="stylesheet" href="/lib/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"mengsiliulian.github.io","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0,"number":true,"expand":false,"scrollspy":true},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/atom.xml" title="AI 新闻周报" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 30vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>AI 新闻周报</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/meme/" target="_self">
+                <i class="iconfont icon-book"></i>
+                <span>网络百科</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/meme/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-book"></i>
+                  <span>网络百科</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/null') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="从&#34;会用&#34;到&#34;会造&#34;：本地部署与微调大模型的进阶学习路线"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-08-07 16:00" pubdate>
+          2026年8月7日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">从&#34;会用&#34;到&#34;会造&#34;：本地部署与微调大模型的进阶学习路线</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>上一篇路线讲的是”怎么用好别人的大模型”（提示词工程），这篇进阶路线讲”怎么把大模型变成自己的”——本地部署、开源模型、微调训练。需要一定编程基础，但不需要是算法专家。</p>
+</blockquote>
+<h2 id="这条路适合谁"><a href="#这条路适合谁" class="headerlink" title="这条路适合谁"></a>这条路适合谁</h2><ul>
+<li>用过 ChatGPT&#x2F;DeepSeek，想摆脱 API 费用和隐私顾虑</li>
+<li>想基于开源模型做自己的专属助手（客服、写作、知识库问答）</li>
+<li>程序员，想理解大模型落地工程</li>
+</ul>
+<p><strong>前置要求</strong>：会 Python 基础（能跑脚本）、了解命令行、有 8GB 以上显存的显卡（没有也能学，用云端或小模型）。</p>
+<h2 id="阶段一：本地跑起来（第-1-2-周）"><a href="#阶段一：本地跑起来（第-1-2-周）" class="headerlink" title="阶段一：本地跑起来（第 1-2 周）"></a>阶段一：本地跑起来（第 1-2 周）</h2><p><strong>目标</strong>：在自己的电脑上运行一个开源大模型。</p>
+<p><strong>学什么</strong>：</p>
+<ul>
+<li>开源模型生态：Llama、Qwen（通义千问）、DeepSeek、Mistral 等，理解”开源权重”和”开源代码”的区别</li>
+<li>量化概念：FP16 &#x2F; INT8 &#x2F; INT4——同样的模型，量化后体积变小、显存要求降低，精度略有损失</li>
+<li>推理工具：Ollama（最简单，一条命令跑模型）、llama.cpp、vLLM（高性能）</li>
+</ul>
+<p><strong>练什么</strong>：</p>
+<ul>
+<li>用 Ollama 跑一个 7B 模型，体验本地对话（本站有专门教程《本地跑大模型是什么体验？普通人也能玩的 Ollama 指南》）</li>
+<li>用 API 方式调用本地模型（OpenAI 兼容接口），让程序对接</li>
+</ul>
+<p><strong>产出</strong>：本地能跑、能调、能接程序。</p>
+<h2 id="阶段二：理解模型原理（第-3-4-周）"><a href="#阶段二：理解模型原理（第-3-4-周）" class="headerlink" title="阶段二：理解模型原理（第 3-4 周）"></a>阶段二：理解模型原理（第 3-4 周）</h2><p><strong>目标</strong>：知道模型内部大致怎么回事，能读懂论文&#x2F;文档。</p>
+<p><strong>学什么</strong>：</p>
+<ul>
+<li>Transformer 架构核心概念：token、注意力机制（Attention）、上下文窗口（本站有《为什么 AI 记不住你说过的话？掰开揉碎聊 token 和上下文窗口》）</li>
+<li>训练三阶段：预训练（学语言）、监督微调 SFT（学对话）、对齐（RLHF&#x2F;DPO，学”做好人”）</li>
+<li>推理过程：为什么模型是”预测下一个词”，为什么会有幻觉（本站有《AI 为什么会一本正经地胡说八道？聊聊大模型的幻觉》）</li>
+</ul>
+<p><strong>练什么</strong>：</p>
+<ul>
+<li>用 Hugging Face 加载一个小模型（如 Qwen2.5-0.5B）做文本生成，观察输出</li>
+<li>跑一个简单的训练脚本（transformers 库），体验”训练”是怎么回事</li>
+</ul>
+<p><strong>产出</strong>：能看懂模型卡（Model Card）、能区分”基座模型”和”对话模型”。</p>
+<h2 id="阶段三：微调实战（第-5-8-周）"><a href="#阶段三：微调实战（第-5-8-周）" class="headerlink" title="阶段三：微调实战（第 5-8 周）"></a>阶段三：微调实战（第 5-8 周）</h2><p><strong>目标</strong>：用自己的数据微调一个专属模型。</p>
+<p><strong>学什么</strong>：</p>
+<ul>
+<li>数据准备：整理成”指令-回答”格式（Instruction Tuning），数据质量 &gt; 数据数量</li>
+<li>LoRA 微调：只训练一小部分参数，消费级显卡也能跑（关键突破），配套工具 PEFT、Q-LoRA</li>
+<li>全参微调 vs LoRA 的取舍：效果 vs 成本</li>
+<li>评测：怎么判断微调效果（测试集、人工对比、指标）</li>
+</ul>
+<p><strong>练什么</strong>：</p>
+<ul>
+<li>用中文数据集（如 Alpaca 中文版）微调 Qwen2.5-1.5B&#x2F;7B（LoRA）</li>
+<li>收集自己的数据（比如你的文章、你的产品 FAQ），微调一个”懂你”的助手</li>
+<li>对比微调前后效果差异</li>
+</ul>
+<p><strong>产出</strong>：一个跑在自己电脑上、用自己数据微调过的专属模型。</p>
+<h2 id="阶段四：工程化落地（第-9-周起，按需）"><a href="#阶段四：工程化落地（第-9-周起，按需）" class="headerlink" title="阶段四：工程化落地（第 9 周起，按需）"></a>阶段四：工程化落地（第 9 周起，按需）</h2><p><strong>目标</strong>：把模型变成真正能用的产品&#x2F;服务。</p>
+<p><strong>学什么</strong>：</p>
+<ul>
+<li>推理服务化：vLLM 部署、OpenAI 兼容 API 暴露</li>
+<li>RAG（检索增强生成）：向量数据库（如 Milvus、Chroma）+ Embedding 模型，让模型基于你的文档回答（解决”模型不知道你的私有知识”问题）</li>
+<li>Agent 框架：让模型调用工具、执行多步任务（LangChain、LlamaIndex，或各家官方 Agent 方案）</li>
+<li>显存优化：量化部署、KV Cache、批处理</li>
+</ul>
+<p><strong>练什么</strong>：</p>
+<ul>
+<li>做一个”文档问答机器人”：把一批 PDF&#x2F;文档索引进向量库，用本地模型回答</li>
+<li>部署一个带 Web 界面的本地助手（Ollama + Open WebUI 是最快路径）</li>
+</ul>
+<h2 id="硬件与成本参考"><a href="#硬件与成本参考" class="headerlink" title="硬件与成本参考"></a>硬件与成本参考</h2><table>
+<thead>
+<tr>
+<th>配置</th>
+<th>能跑什么</th>
+<th>成本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>8GB 显存</td>
+<td>7B 模型（INT4 量化）</td>
+<td>家用显卡</td>
+</tr>
+<tr>
+<td>16GB 显存</td>
+<td>14B 模型（量化）</td>
+<td>中端显卡</td>
+</tr>
+<tr>
+<td>24GB 显存</td>
+<td>30B 模型（量化）</td>
+<td>高端显卡</td>
+</tr>
+<tr>
+<td>云端 GPU</td>
+<td>70B+ 大模型</td>
+<td>按小时计费</td>
+</tr>
+</tbody></table>
+<p>跑不起大模型？没关系——小模型的微调、部署、RAG 流程和大模型完全一样，技能可以迁移。</p>
+<h2 id="学习资源"><a href="#学习资源" class="headerlink" title="学习资源"></a>学习资源</h2><ul>
+<li><strong>Hugging Face</strong>：模型、数据集、教程一站式（官方文档很全）</li>
+<li><strong>Ollama 官方文档</strong>：本地部署最快上手</li>
+<li><strong>各模型官方仓库</strong>：Qwen（阿里）、DeepSeek、Llama（Meta）的 GitHub README 都有部署&#x2F;微调指南</li>
+<li><strong>B站&#x2F;知乎教程</strong>：搜”LoRA 微调””Qwen 本地部署”有大量实战教程（注意时效，以官方文档为准）</li>
+</ul>
+<h2 id="常见坑"><a href="#常见坑" class="headerlink" title="常见坑"></a>常见坑</h2><ul>
+<li>❌ 一开始就微调大模型 → 先跑通 1.5B&#x2F;7B 再升级</li>
+<li>❌ 数据没清洗就训练 → 数据里有错别字&#x2F;重复，模型会学坏</li>
+<li>❌ 只看教程不动手 → 本地部署的坑（显存、依赖、版本）只有踩过才知道</li>
+<li>❌ 忽略显卡温度&#x2F;显存溢出 → 训练时盯着 nvidia-smi</li>
+</ul>
+<blockquote>
+<p>这条路走完，你就从”用 AI 的人”变成了”造 AI 的人”。过程中遇到最多的不是算法问题，而是工程问题——这正是本地部署路线的价值所在：它逼着你真正理解模型是怎么工作的。</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" class="category-chain-item">学习路线</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" class="print-no-link">#大模型</a>
+      
+        <a href="/tags/%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2/" class="print-no-link">#本地部署</a>
+      
+        <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF/" class="print-no-link">#学习路线</a>
+      
+        <a href="/tags/%E5%BE%AE%E8%B0%83/" class="print-no-link">#微调</a>
+      
+        <a href="/tags/%E8%BF%9B%E9%98%B6/" class="print-no-link">#进阶</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>从&#34;会用&#34;到&#34;会造&#34;：本地部署与微调大模型的进阶学习路线</div>
+      <div>https://mengsiliulian.github.io/2026/08/07/ai-learning-finetune-roadmap/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>mengsiliulian</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年8月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              CC BY-NC-SA 4.0
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/08/07/ai-tools-productivity-2026/" title="2026 年效率办公 AI 工具实测盘点：笔记、会议、翻译、文档，一网打尽">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">2026 年效率办公 AI 工具实测盘点：笔记、会议、翻译、文档，一网打尽</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/08/07/ai-learning-prompt-roadmap/" title="提示词工程从入门到够用：一份写给普通人的 Prompt 学习路线">
+                        <span class="hidden-mobile">提示词工程从入门到够用：一份写给普通人的 Prompt 学习路线</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"mengsiliulian/mengsiliulian.github.io","repo-id":"R_kgDOTu8OEg","category":"Announcements","category-id":"DIC_kwDOTu8OEs4DCw0u","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="/lib/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="/lib/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="/lib/jquery.min.js" ></script>
+<script  src="/lib/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="/js/like.js"></script>
+<script src="/js/back.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

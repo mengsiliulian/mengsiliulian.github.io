@@ -1,0 +1,154 @@
+/* ============================================================
+   梗详解专区 · 样式
+   风格贴合本站浅渐变 + 深色文字，卡片式词条列表 + 搜索框
+   ============================================================ */
+
+.meme-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 10px 0 40px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #2c3e50;
+}
+
+.meme-head { margin-bottom: 18px; }
+.meme-head h2 { margin: 0 0 6px; font-size: 24px; color: #2c3e50; }
+.meme-desc { margin: 0; color: #5a6b7d; font-size: 14px; }
+.meme-submit { margin: 8px 0 0; color: #5a6b7d; font-size: 13px; }
+.meme-submit a { color: #007bff; font-weight: 500; text-decoration: none; border-bottom: 1px dashed #007bff; }
+.meme-submit a:hover { color: #0056b3; border-bottom-style: solid; }
+
+/* ---- 搜索框 ---- */
+.meme-search-box {
+  position: relative;
+  margin-bottom: 14px;
+}
+.meme-search-box input {
+  width: 100%;
+  padding: 13px 40px 13px 16px;
+  font-size: 16px;
+  border: 2px solid #c9d6e8;
+  border-radius: 10px;
+  background: #fff;
+  color: #2c3e50;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.meme-search-box input:focus {
+  border-color: #7aa2e3;
+  box-shadow: 0 0 0 3px rgba(122,162,227,.18);
+}
+.meme-search-clear {
+  position: absolute;
+  right: 14px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #9aa7b8;
+  cursor: pointer;
+  user-select: none;
+}
+.meme-search-clear:hover { color: #e05252; }
+
+/* ---- 类型筛选 ---- */
+.meme-filter { margin-bottom: 12px; }
+.meme-filter-label { font-size: 14px; color: #5a6b7d; }
+.meme-chip {
+  display: inline-block;
+  margin: 2px 4px 2px 0;
+  padding: 4px 12px;
+  font-size: 13px;
+  border-radius: 20px;
+  background: #f0f4fb;
+  color: #3e5570;
+  cursor: pointer;
+  border: 1px solid transparent;
+  user-select: none;
+  transition: all .15s;
+}
+.meme-chip:hover { background: #e3ecf9; }
+.meme-chip.active {
+  background: #7aa2e3;
+  color: #fff;
+}
+
+.meme-stats { margin-bottom: 14px; font-size: 13px; color: #7b8a9d; }
+
+/* ---- 词条卡片 ---- */
+.meme-card {
+  background: #fff;
+  border: 1px solid #e3eaf3;
+  border-left: 4px solid #7aa2e3;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 6px rgba(47,65,84,.04);
+}
+.meme-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 6px;
+}
+.meme-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 400;
+  color: #fff;
+  background: #7aa2e3;
+  border-radius: 4px;
+  padding: 1px 8px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.meme-era {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 400;
+  color: #7b8a9d;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+.meme-def { margin: 0 0 8px; color: #33475c; font-size: 15px; }
+.meme-f { margin: 4px 0; font-size: 14px; color: #3e5570; }
+
+.meme-aliases { margin: 6px 0; font-size: 13px; color: #7b8a9d; }
+.meme-aliases b { color: #5a6b7d; font-weight: 600; }
+.meme-alias {
+  display: inline-block;
+  background: #eef4fd;
+  color: #4a6fa5;
+  border-radius: 4px;
+  padding: 1px 7px;
+  margin: 2px 4px 2px 0;
+  font-size: 12px;
+}
+
+.meme-related { color: #5a6b7d; }
+.meme-rel {
+  display: inline-block;
+  margin: 2px 6px 2px 0;
+  color: #4a6fa5;
+  font-size: 13px;
+}
+
+.meme-card mark {
+  background: #ffe082;
+  color: #333;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+.meme-empty { text-align: center; color: #8a97a8; padding: 40px 0; }
+.meme-loading { text-align: center; color: #8a97a8; padding: 30px 0; }
+
+@media (max-width: 600px) {
+  .meme-wrap { padding: 6px 4px 30px; }
+  .meme-card { padding: 12px 14px; }
+  .meme-card-title { font-size: 16px; }
+}
+
+.meme-src { font-size: 0.8em; color: #7f8c9d; margin-top: 6px; }
+.meme-src a { color: #7aa2e3; text-decoration: none; border-bottom: 1px dashed #7aa2e3; }
+.meme-src a:hover { color: #2f6fd0; }
+
