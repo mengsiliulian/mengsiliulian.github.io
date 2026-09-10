@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mengsiliulian.github.io/sitemap.xml
